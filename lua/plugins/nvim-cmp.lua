@@ -8,10 +8,12 @@ return {
     "L3MON4D3/LuaSnip", -- snippet engine
     "saadparwaiz1/cmp_luasnip", -- for autocompletion
     "rafamadriz/friendly-snippets", -- useful snippets
+    "windwp/nvim-autopairs", -- autopairs integration
   },
   config = function()
     local cmp = require("cmp")
     local luasnip = require("luasnip")
+    local cmp_autopairs = require("nvim-autopairs.completion.cmp")
 
     -- Загрузить snippets из friendly-snippets
     require("luasnip.loaders.from_vscode").lazy_load()
@@ -46,5 +48,8 @@ return {
         { name = "path" }, -- file system paths
       }),
     })
+
+    -- Интеграция nvim-autopairs с nvim-cmp
+    cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
   end,
 }

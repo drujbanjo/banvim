@@ -8,6 +8,18 @@ return {
   },
   lazy = false, -- neo-tree will lazily load itself
   opts = {
+    window = {
+      width = 30,
+      mappings = {
+        ["P"] = {
+          "toggle_preview",
+          config = {
+            use_float = false,
+            title = "Neo-tree Preview",
+          },
+        },
+      },
+    },
     source_selector = {
       winbar = false,
       statusline = false,

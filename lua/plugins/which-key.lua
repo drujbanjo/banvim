@@ -48,8 +48,8 @@ return {
     -- Регистрация групп команд с красивыми названиями
     wk.add({
       -- Neovim
-      { "<leader>M", desc = "Mason" },
-      { "<leader>L", desc = "Lazy" },
+      { "<leader>m", desc = "Mason" },
+      { "<leader>l", desc = "Lazy" },
 
       -- Quit
       { "<leader>q", group = "Quit" },
@@ -61,12 +61,13 @@ return {
       { "<leader>o", desc = "Toggle Neotree Git" },
 
       -- Window
+      { "<leader>w", proxy = "<C-w>", group = "Window" },
       { "<leader>|", desc = "Split Window Vertically" },
       { "<leader>-", desc = "Split Window Horizontally" },
 
       -- Telescope
       { "<leader>f", group = "Find" },
-      { "<leader><leader>", desc = "File" },
+      { "<leader><leader>", desc = "Find File" },
       { "<leader>ff", desc = "File" },
       { "<leader>fg", desc = "Live Grep" },
       { "<leader>fw", desc = "Grep Up Cursor" },
@@ -89,6 +90,33 @@ return {
       -- UI
       { "<leader>u", group = "UI" },
       { "<leader>uC", desc = "Colorschemes" },
+      { "<leader>ut", desc = "Toggle Treesitter Highlight in Buf" },
+      { "<leader>uT", desc = "Toggle Treesitter Highlight" },
+
+      -- Buffers
+      { "<leader>b", group = "Buffers" },
+      { "<leader>bn", desc = "Move Next" },
+      { "<leader>bp", desc = "Move Prev" },
+      { "<leader>bc", desc = "Pick Close" },
+      { "<leader>bd", desc = "Close" },
+      { "<leader>bD", desc = "Close!" },
+      { "<leader>bb", desc = "Pick" },
+      { "<leader>bo", desc = "Close Others" },
+      { "<leader>bl", desc = "Close All Left" },
+      { "<leader>br", desc = "Close All Right" },
+
+      -- Code
+      { "<leader>c", group = "code" },
+      { "<leader>cf", desc = "Format" },
+      { "<leader>ca", desc = "Actions" },
+      { "<leader>cd", desc = "Diagnostics" },
+      { "<leader>cD", desc = "Telescope Diagnostics" },
+      { "<leader>cr", desc = "Rename Word" },
+      { "<leader>cs", desc = "Restart LSP" },
+      { "<leader>ci", desc = "LSP Info" },
+
+      -- Trouble
+      { "<leader>x", group = "Trouble" },
 
       -- { "<leader>b", group = "Buffer" },
       -- { "<leader>c", group = "Code" },

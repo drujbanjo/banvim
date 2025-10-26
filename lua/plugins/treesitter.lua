@@ -1,32 +1,26 @@
 return {
   "nvim-treesitter/nvim-treesitter",
-  lazy = false,
-  branch = "main",
   build = ":TSUpdate",
-  opts = {
-    ensure_installed = {
-      "typescript",
-      "javascript",
-      "tsx",
-      "html",
-      "css",
-      "json",
-      "graphql",
-      "prisma",
-      "lua",
-      "vim",
-      "python",
-      "rust",
-      "markdown",
-    },
-    auto_install = true,
-    sync_install = false,
-    highlight = {
-      enable = true,
-      additional_vim_regex_highlighting = false,
-    },
-    indent = {
-      enable = true,
-    },
-  },
+  config = function()
+    require("nvim-treesitter.configs").setup({
+      ensure_installed = {
+        "lua",
+        "javascript",
+        "typescript",
+        "tsx",
+        "graphql",
+        "html",
+        "css",
+        "markdown",
+        "rust",
+        "json",
+        "markdown_inline",
+        "toml",
+        "yaml",
+        "prisma",
+      },
+      auto_install = true,
+      highlight = { enable = true },
+    })
+  end,
 }

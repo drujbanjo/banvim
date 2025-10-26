@@ -9,22 +9,37 @@ return {
     -- Функция для определения темы и получения соответствующих highlights
     local function get_highlights()
       local colorscheme = vim.g.colors_name or ""
-
       if colorscheme:match("catppuccin") then
+        local palette = require("catppuccin.palettes").get_palette()
         local ok, catppuccin_bufferline = pcall(require, "catppuccin.special.bufferline")
         if ok then
-          return catppuccin_bufferline.get_theme()
+          return catppuccin_bufferline.get_theme({
+            custom = {
+              all = {
+                fill = { bg = palette.mantle }, -- Фон пустого пространства
+                background = { bg = palette.mantle }, -- Фон неактивных буферов
+                buffer_selected = { bg = palette.base }, -- Фон активного буфера
+                buffer_visible = { bg = palette.mantle }, -- Фон видимых буферов
+              },
+            },
+          })
         end
       end
-
       return nil
     end
-
     -- Функция для полной настройки bufferline
     local function setup_bufferline()
       require("bufferline").setup({
         highlights = get_highlights(),
         options = {
+          offsets = {
+            {
+              filetype = "neo-tree",
+              text = "",
+              text_align = "center",
+              separator = false,
+            },
+          },
           mode = "buffers",
           numbers = "none",
           close_command = "bdelete! %d",
@@ -69,10 +84,8 @@ return {
         },
       })
     end
-
     -- Первоначальная настройка
     setup_bufferline()
-
     -- Автоматически обновляем при смене темы
     vim.api.nvim_create_autocmd("ColorScheme", {
       pattern = "*",
@@ -83,23 +96,16 @@ return {
         end, 100)
       end,
     })
-
     -- Маппинги
     local keymap = vim.keymap.set
     local opts = { noremap = true, silent = true }
-
     keymap("n", "<Tab>", ":BufferLineCycleNext<CR>", opts)
     keymap("n", "<S-Tab>", ":BufferLineCyclePrev<CR>", opts)
     keymap("n", "<leader>bn", ":BufferLineMoveNext<CR>", opts)
     keymap("n", "<leader>bp", ":BufferLineMovePrev<CR>", opts)
-    keymap("n", "<leader>1", ":BufferLineGoToBuffer 1<CR>", opts)
-    keymap("n", "<leader>2", ":BufferLineGoToBuffer 2<CR>", opts)
-    keymap("n", "<leader>3", ":BufferLineGoToBuffer 3<CR>", opts)
-    keymap("n", "<leader>4", ":BufferLineGoToBuffer 4<CR>", opts)
-    keymap("n", "<leader>5", ":BufferLineGoToBuffer 5<CR>", opts)
     keymap("n", "<leader>bc", ":BufferLinePickClose<CR>", opts)
-    keymap("n", "<leader>bx", ":bdelete<CR>", opts)
-    keymap("n", "<leader>bX", ":bdelete!<CR>", opts)
+    keymap("n", "<leader>bd", ":bdelete<CR>", opts)
+    keymap("n", "<leader>bD", ":bdelete!<CR>", opts)
     keymap("n", "<leader>bb", ":BufferLinePick<CR>", opts)
     keymap("n", "<leader>bo", ":BufferLineCloseOthers<CR>", opts)
     keymap("n", "<leader>bl", ":BufferLineCloseLeft<CR>", opts)

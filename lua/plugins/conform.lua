@@ -66,7 +66,7 @@ return {
     })
 
     -- Маппинг для ручного форматирования
-    vim.keymap.set({ "n", "v" }, "<leader>lf", function()
+    vim.keymap.set({ "n", "v" }, "<leader>cf", function()
       conform.format({
         lsp_fallback = true,
         async = false,
