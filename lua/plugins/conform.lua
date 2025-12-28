@@ -32,6 +32,9 @@ return {
 
         -- Rust
         rust = { "rust-analyzer" },
+
+        -- Docker
+        dockerfile = { "hadolint" },
       },
 
       -- Форматирование при сохранении

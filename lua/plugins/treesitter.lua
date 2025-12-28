@@ -18,6 +18,8 @@ return {
         "toml",
         "yaml",
         "prisma",
+        "dockerfile",
+        "regex",
       },
       auto_install = true,
       highlight = { enable = true },

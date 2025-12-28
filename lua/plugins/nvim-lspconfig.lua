@@ -139,6 +139,18 @@ return {
       },
     })
 
+    -- YAML
+    vim.lsp.config("yamlls", {
+      capabilities = capabilities,
+      handlers = handlers,
+      settings = {
+        json = {
+          schemas = require("schemastore").yaml.schemas(),
+          validate = { enable = true },
+        },
+      },
+    })
+
     -- Tailwind CSS
     vim.lsp.config("tailwindcss", {
       capabilities = capabilities,
@@ -228,6 +240,16 @@ return {
       },
     })
 
+    vim.lsp.config("dockerls", {
+      capabilities = capabilities,
+      handlers = handlers,
+    })
+
+    vim.lsp.config("docker_compose_language_service", {
+      capabilities = capabilities,
+      handlers = handlers,
+    })
+
     -- Включение LSP серверов
     vim.lsp.enable("ts_ls")
     vim.lsp.enable("prismals")
@@ -235,10 +257,13 @@ return {
     vim.lsp.enable("cssls")
     vim.lsp.enable("html")
     vim.lsp.enable("jsonls")
+    vim.lsp.enable("yamlls")
     vim.lsp.enable("tailwindcss")
     vim.lsp.enable("pyright")
     vim.lsp.enable("ruff")
     vim.lsp.enable("rust_analyzer")
     vim.lsp.enable("lua_ls")
+    vim.lsp.enable("dockerls")
+    vim.lsp.enable("docker_compose_language_service")
   end,
 }

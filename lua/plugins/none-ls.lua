@@ -49,6 +49,9 @@ return {
 
         -- Lua
         formatting.stylua,
+
+        -- docker
+        null_ls.builtins.diagnostics.hadolint,
       },
     })
   end,
